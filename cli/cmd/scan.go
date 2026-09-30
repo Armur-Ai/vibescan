@@ -261,11 +261,33 @@ func waitForScan(apiClient *api.APIClient, taskID string) map[string]interface{}
 	}
 
 	if streamActive {
-		// Continue reading SSE updates
-		for update := range updates {
-			displayProgress(update)
-			if update.Status == "completed" || update.Status == "failed" {
-				return fetchFinalResult(apiClient, taskID, update.Status)
+		// Continue reading SSE updates. The stream can stay on "queued" for the
+		// whole scan when the server has no per-tool progress to report, so the
+		// task status is polled alongside it.
+		poll := time.NewTicker(2 * time.Second)
+		defer poll.Stop()
+	stream:
+		for {
+			select {
+			case update, ok := <-updates:
+				if !ok {
+					break stream
+				}
+				displayProgress(update)
+				if update.Status == "completed" || update.Status == "failed" {
+					return fetchFinalResult(apiClient, taskID, update.Status)
+				}
+			case <-poll.C:
+				status, result, err := apiClient.GetTaskStatus(taskID)
+				if err != nil {
+					continue
+				}
+				if status == "success" {
+					fmt.Println()
+					return result
+				} else if status == "failed" {
+					return fetchFinalResult(apiClient, taskID, status)
+				}
 			}
 		}
 	}
