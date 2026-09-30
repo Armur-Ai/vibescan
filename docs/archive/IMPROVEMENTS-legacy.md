@@ -1,3 +1,8 @@
+> **Archived 2026-09-30.** This is the original 59-sprint plan written when the project was
+> "Armur Security Agent". It is kept for reference only. Checked boxes record that code was
+> written, not that the feature is reachable from the CLI. The current plan is
+> [ROADMAP.md](../../ROADMAP.md).
+
 # Armur Security Agent — Improvement Roadmap
 
 Your personal security agent. SAST + DAST + exploit simulation + attack path analysis — all automated.

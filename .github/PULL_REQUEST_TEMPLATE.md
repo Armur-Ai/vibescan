@@ -18,4 +18,4 @@
 - [ ] `go test ./...` passes
 - [ ] `go build ./...` compiles (both server and CLI)
 - [ ] New tool integrations include `testdata/` fixtures
-- [ ] IMPROVEMENTS.md updated (if applicable)
+- [ ] ROADMAP.md updated (if applicable)
