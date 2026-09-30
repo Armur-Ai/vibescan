@@ -110,9 +110,12 @@ repository scan and a single-file scan. They are marked *fixed* below. Everythin
    the wrong scan type. Fixing the routing without fixing this would delete users' files.
 3. **Semgrep runs with `--config=auto`.** That needs network access, sends metrics, and pulls
    registry rules whose licence restricts use inside a competing product. See [Risks](#11-risks).
-4. **Leftover branding.** `action.yml`, pre-commit hooks, MCP tool names, docs and the changelog
+4. **CI is red on `main`** and has been since at least March: the lint job's golangci-lint is
+   built with an older Go than `go.mod` targets, the test job fails, and `armur-scan.yml` does not
+   load. Nothing else in Phase 0 can be trusted until it is green.
+5. **Leftover branding.** `action.yml`, pre-commit hooks, MCP tool names, docs and the changelog
    still say `armur`; the Action installs from `install.armur.ai`.
-5. **The banner names tools we do not run** (Nuclei, Snyk).
+6. **The banner named tools we do not run** (Nuclei, Snyk). *Fixed.*
 
 ### The honest summary
 
@@ -227,6 +230,7 @@ Nothing else matters until a stranger can install vibescan and get a real result
 - [ ] A scan with zero external tools still returns results from the built-in checks (Phase 1).
 
 **Truth in packaging**
+- [ ] Get CI green on `main` and keep it required for merges.
 - [ ] First tagged release through goreleaser; verify brew, npm and the install script on clean
       macOS, Linux and Windows runners in CI.
 - [ ] Resolve the PyPI name collision (see [Open decisions](#12-open-decisions)).
