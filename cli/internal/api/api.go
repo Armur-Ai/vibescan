@@ -4,7 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
+	"mime/multipart"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -99,12 +103,41 @@ func (c *APIClient) ScanRepository(repoURL, language string, isAdvanced bool) (s
 func (c *APIClient) ScanFile(filePath string, isAdvanced bool) (string, error) {
 	fullURL := strings.TrimRight(c.BaseURL, "/") + "/api/v1/scan/file"
 
-	body, err := json.Marshal(map[string]string{"file_path": filePath})
+	info, err := os.Stat(filePath)
+	if err != nil {
+		return "", fmt.Errorf("cannot read %s: %w", filePath, err)
+	}
+	if info.IsDir() {
+		return "", fmt.Errorf("%s is a directory: directory scans are not supported by the CLI yet, scan a single file or a repository URL", filePath)
+	}
+
+	file, err := os.Open(filePath)
+	if err != nil {
+		return "", fmt.Errorf("cannot read %s: %w", filePath, err)
+	}
+	defer file.Close()
+
+	// The endpoint expects a multipart upload with the file in the "file" field.
+	var body bytes.Buffer
+	writer := multipart.NewWriter(&body)
+	part, err := writer.CreateFormFile("file", filepath.Base(filePath))
 	if err != nil {
 		return "", fmt.Errorf("error creating request body: %w", err)
 	}
+	if _, err := io.Copy(part, file); err != nil {
+		return "", fmt.Errorf("error creating request body: %w", err)
+	}
+	if err := writer.Close(); err != nil {
+		return "", fmt.Errorf("error creating request body: %w", err)
+	}
 
-	resp, err := c.postJSON(fullURL, body)
+	req, err := http.NewRequest(http.MethodPost, fullURL, &body)
+	if err != nil {
+		return "", fmt.Errorf("error making API request: %w", err)
+	}
+	req.Header.Set("Content-Type", writer.FormDataContentType())
+
+	resp, err := c.do(req)
 	if err != nil {
 		return "", fmt.Errorf("error making API request: %w", err)
 	}
