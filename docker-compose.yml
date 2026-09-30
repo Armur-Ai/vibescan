@@ -1,27 +1,25 @@
-version: "3.1"
-
 services:
   app:
     build: .
-    container_name: api_service
-    restart: always
-    command: go run ./cmd/server/main.go
+    container_name: vibescan_api
+    restart: unless-stopped
     volumes:
       - ./shared_tmp:/armur/repos
     ports:
-      - "${APP_PORT}:4500"
+      - "${APP_PORT:-4500}:4500"
     environment:
       - PYTHONDONTWRITEBYTECODE=1
       - PYTHONUNBUFFERED=1
-      - APP_PORT=${APP_PORT}
-    env_file:
-      - .env
+      - APP_PORT=4500
+      - REDIS_ADDR=redis_service:6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+      - REDIS_DB=${REDIS_DB:-0}
     depends_on:
       - redis_service
 
   redis_service:
-    image: "redis:alpine"
-    container_name: redis_service
-    restart: always
+    image: "redis:7-alpine"
+    container_name: vibescan_redis
+    restart: unless-stopped
     ports:
-      - "${REDIS_PORT}:6379"
+      - "127.0.0.1:${REDIS_PORT:-6379}:6379"

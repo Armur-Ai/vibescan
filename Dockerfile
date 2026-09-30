@@ -1,7 +1,7 @@
 # ============================================================
 # Stage 1: Go binary builder
 # ============================================================
-FROM golang:1.23-alpine AS go-builder
+FROM golang:1.27-alpine AS go-builder
 
 WORKDIR /build
 RUN apk add --no-cache git
@@ -13,13 +13,13 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /armur-server ./cmd/server/main.go
 # ============================================================
 # Stage 2: Go security tools
 # ============================================================
-FROM golang:1.23-alpine AS go-tools
+FROM golang:1.27-alpine AS go-tools
 
 RUN apk add --no-cache git
 ENV GOBIN=/go-tools
 RUN mkdir -p /go-tools
 
-RUN go install github.com/securego/gosec/v2/cmd/gosec@v2.20.0 && \
+RUN go install github.com/securego/gosec/v2/cmd/gosec@latest && \
     go install golang.org/x/lint/golint@latest && \
     go install honnef.co/go/tools/cmd/staticcheck@latest && \
     go install github.com/fzipp/gocyclo/cmd/gocyclo@latest && \
@@ -32,7 +32,7 @@ RUN go install github.com/securego/gosec/v2/cmd/gosec@v2.20.0 && \
 FROM python:3.12-slim AS python-tools
 
 RUN pip install --no-cache-dir \
-    semgrep bandit pydocstyle radon pylint trufflehog3 checkov vulture
+    semgrep bandit pydocstyle radon pylint checkov vulture
 
 # ============================================================
 # Runtime target: armur:go  (Go tools only)
@@ -117,7 +117,7 @@ COPY --from=python-tools /usr/local /usr/local
 
 # Trivy
 RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh \
-    | sh -s -- -b /usr/local/bin v0.55.2
+    | sh -s -- -b /usr/local/bin
 
 # Node tools
 RUN npm install -g eslint jscpd
