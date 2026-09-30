@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400" role="img" aria-label="vibescan: code from Cursor, Claude Code, Copilot and Windsurf flows through security scanners and comes out either ready to ship or flagged">
+<style>
+  .flow { fill: none; stroke-width: 2; stroke-dasharray: 7 7; animation: flow 1.4s linear infinite; }
+  .chip { animation: pulse 3.2s ease-in-out infinite; }
+  .beam { animation: sweep 3.2s ease-in-out infinite; }
+  .hit { animation: blink 1.6s ease-in-out infinite; }
+  @keyframes flow { to { stroke-dashoffset: -28; } }
+  @keyframes pulse { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+  @keyframes sweep { 0% { transform: translateX(0); } 50% { transform: translateX(384px); } 100% { transform: translateX(0); } }
+  @keyframes blink { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .flow, .chip, .beam, .hit { animation: none; opacity: 1; } }
+</style>
+<rect width="1200" height="400" rx="16" fill="#0d1117"/>
+<text x="600" y="62" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="42" font-weight="700" letter-spacing="3"><tspan fill="#4fd1b5">vibe</tspan><tspan fill="#f5a524">scan</tspan></text>
+<text x="600" y="92" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#8b949e">Security scanner for AI-generated code</text>
+<rect x="40" y="132" width="176" height="38" rx="19" fill="#161d2b" stroke="#2a3447"/>
+<circle cx="62" cy="151" r="5" fill="#4fd1b5"/>
+<text x="78" y="156" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Cursor</text>
+<path class="flow" stroke="#4fd1b5" style="animation-delay:-0.0s" d="M216,151 C 310,151 310,235 400,235"/>
+<rect x="40" y="187" width="176" height="38" rx="19" fill="#161d2b" stroke="#2a3447"/>
+<circle cx="62" cy="206" r="5" fill="#f5a524"/>
+<text x="78" y="211" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Claude Code</text>
+<path class="flow" stroke="#f5a524" style="animation-delay:-0.35s" d="M216,206 C 310,206 310,235 400,235"/>
+<rect x="40" y="242" width="176" height="38" rx="19" fill="#161d2b" stroke="#2a3447"/>
+<circle cx="62" cy="261" r="5" fill="#a78bfa"/>
+<text x="78" y="266" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Copilot</text>
+<path class="flow" stroke="#a78bfa" style="animation-delay:-0.7s" d="M216,261 C 310,261 310,235 400,235"/>
+<rect x="40" y="297" width="176" height="38" rx="19" fill="#161d2b" stroke="#2a3447"/>
+<circle cx="62" cy="316" r="5" fill="#60a5fa"/>
+<text x="78" y="321" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#e6edf3">Windsurf</text>
+<path class="flow" stroke="#60a5fa" style="animation-delay:-1.0499999999999998s" d="M216,316 C 310,316 310,235 400,235"/>
+<rect x="400" y="120" width="400" height="230" rx="14" fill="#131a26" stroke="#2a3447"/>
+<g class="chip" style="animation-delay:-0.0s"><rect x="420" y="138" width="174" height="34" rx="6" fill="#0f2a27" stroke="#1f5c52"/><text x="507" y="160" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#4fd1b5">semgrep</text></g>
+<g class="chip" style="animation-delay:-0.4s"><rect x="606" y="138" width="174" height="34" rx="6" fill="#0f2a27" stroke="#1f5c52"/><text x="693" y="160" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#4fd1b5">eslint</text></g>
+<g class="chip" style="animation-delay:-0.8s"><rect x="420" y="182" width="174" height="34" rx="6" fill="#0f2a27" stroke="#1f5c52"/><text x="507" y="204" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#4fd1b5">bandit</text></g>
+<g class="chip" style="animation-delay:-1.2000000000000002s"><rect x="606" y="182" width="174" height="34" rx="6" fill="#0f2a27" stroke="#1f5c52"/><text x="693" y="204" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#4fd1b5">gosec</text></g>
+<g class="chip" style="animation-delay:-1.6s"><rect x="420" y="226" width="174" height="34" rx="6" fill="#0f2a27" stroke="#1f5c52"/><text x="507" y="248" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#4fd1b5">trufflehog</text></g>
+<g class="chip" style="animation-delay:-2.0s"><rect x="606" y="226" width="174" height="34" rx="6" fill="#0f2a27" stroke="#1f5c52"/><text x="693" y="248" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#4fd1b5">osv-scanner</text></g>
+<g class="chip" style="animation-delay:-2.4000000000000004s"><rect x="420" y="270" width="174" height="34" rx="6" fill="#0f2a27" stroke="#1f5c52"/><text x="507" y="292" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#4fd1b5">trivy</text></g>
+<g class="chip" style="animation-delay:-2.8000000000000003s"><rect x="606" y="270" width="174" height="34" rx="6" fill="#0f2a27" stroke="#1f5c52"/><text x="693" y="292" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#4fd1b5">checkov</text></g>
+<text x="600" y="336" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#8b949e">+ 29 more scanners</text>
+<rect class="beam" x="406" y="126" width="4" height="218" rx="2" fill="#f5a524" opacity=".55"/>
+<path class="flow" stroke="#4fd1b5" d="M800,235 C 880,235 880,179 960,179"/>
+<path class="flow" stroke="#f0645a" d="M800,235 C 880,235 880,291 960,291"/>
+<rect x="960" y="160" width="200" height="38" rx="19" fill="#161d2b" stroke="#4fd1b5"/>
+<text x="1060" y="184" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#4fd1b5">ready to ship ✓</text>
+<rect x="960" y="272" width="200" height="38" rx="19" fill="#161d2b" stroke="#f0645a"/>
+<circle class="hit" cx="984" cy="291" r="5" fill="#f0645a"/>
+<text x="1068" y="296" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="15" fill="#f0645a">flagged before prod</text>
+</svg>
